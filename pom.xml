@@ -1,0 +1,110 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>group.msg.playground</groupId>
+    <artifactId>mp-headerpropagation</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.build.timestamp.format>dd.MM.yyyy HH:mm:ss.SSS z</maven.build.timestamp.format>
+        <build.timestamp>${maven.build.timestamp}</build.timestamp>
+    </properties>
+
+    <build>
+        <defaultGoal>clean package</defaultGoal>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <compilerArgs>
+                        <arg>-XprintProcessorInfo</arg>
+                        <arg>-XprintRounds</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+	
+	 <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-jakartaee8</artifactId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>19.0.0.Final</version>
+            </dependency>
+			<dependency>
+                <groupId>org.wildfly.bom</groupId>
+                <artifactId>wildfly-microprofile</artifactId>
+                <scope>import</scope>
+                <type>pom</type>
+                <version>19.0.0.Final</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+			<!-- **************************** -->
+            <!-- wildfly-jakartaee8 selection -->
+            <!-- **************************** -->
+            <dependency>
+                <groupId>jakarta.json</groupId>
+                <artifactId>jakarta.json-api</artifactId>
+				<scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.enterprise</groupId>
+                <artifactId>jakarta.enterprise.cdi-api</artifactId>
+				<scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.ws.rs</groupId>
+                <artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
+				<scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.spec.javax.servlet</groupId>
+                <artifactId>jboss-servlet-api_4.0_spec</artifactId>
+				<scope>provided</scope>
+            </dependency>
+
+            <!-- *************************** -->
+            <!-- micro-profile 3.3 selection -->
+            <!-- *************************** -->
+            <dependency>
+                <groupId>org.eclipse.microprofile.config</groupId>
+                <artifactId>microprofile-config-api</artifactId>
+				<scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.microprofile.fault-tolerance</groupId>
+                <artifactId>microprofile-fault-tolerance-api</artifactId>
+				<scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.eclipse.microprofile.rest.client</groupId>
+                <artifactId>microprofile-rest-client-api</artifactId>
+				<scope>provided</scope>
+            </dependency>
+    </dependencies>
+
+    <issueManagement>
+        <system>Github</system>
+        <url>https://github.com/koenigt/headerpropagation/issues</url>
+    </issueManagement>
+	
+	 <scm>
+		<url>scm:git:https://github.com/koenigt/headerpropagation.git</url>
+		<connection>scm:git:https://github.com/koenigt/headerpropagation.git</connection>
+    </scm>
+
+</project>
