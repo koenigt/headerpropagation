@@ -11,12 +11,10 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@RegisterRestClient(baseUri = "http://localhost:9080/mp-hp")
-//@RegisterRestClient()
+@RegisterRestClient()
 @Path("api")
 @Produces(MediaType.APPLICATION_JSON)
 @RegisterClientHeaders()
-//@RegisterClientHeaders(MyDefaultClientHeadersFactory.class)
 public interface InfoResource {
 
 
