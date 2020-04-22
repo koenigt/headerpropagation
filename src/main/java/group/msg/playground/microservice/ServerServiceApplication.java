@@ -14,17 +14,12 @@ public class ServerServiceApplication extends Application {
 
     private static final Logger logger = Logger.getLogger(ServerServiceApplication.class.getName());
 
-    @Inject
-    @ConfigProperty(name = "myAppConfig", defaultValue = "not/configured")
-    private String myAppConfig;
-
 
     @Override
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> classes = new HashSet<>();
         classes.add(ServerResource.class);
         classes.add(ClientResource.class);
-        logger.info("myAppConfig: " + myAppConfig);
         return classes;
     }
 }

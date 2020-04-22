@@ -35,15 +35,16 @@ public class ClientResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response performRemoteServiceCall(@Context HttpHeaders headers, @HeaderParam(value = "Accept-Language") String aLang) {
+		logger.info("ClientResource called");
         Config config = ConfigProvider.getConfig();
         Iterable<ConfigSource> configSources = config.getConfigSources();
         MultivaluedMap<String, String> requestHeaders = headers.getRequestHeaders();
         JsonObjectBuilder mainObjectBuilder = Json.createObjectBuilder();
-        mainObjectBuilder.add("Name", "client");
-        mainObjectBuilder.add("propagationConfig", propagation);
+        mainObjectBuilder.add("Name", "ClientResource");
+        mainObjectBuilder.add("org.eclipse.microprofile.rest.client.propagateHeaders", propagation);
         JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
         requestHeaders.forEach((key, value) -> objectBuilder.add(key, value.toString()));
-        mainObjectBuilder.add("RequestHeaders", objectBuilder);
+        mainObjectBuilder.add("IncomingRequestHeaders", objectBuilder);
         Response infosResponse = infoResource.getInfos();
         mainObjectBuilder.add("ServerResponse", infosResponse.readEntity(JsonObject.class));
         return Response.ok(mainObjectBuilder.build()).build();
